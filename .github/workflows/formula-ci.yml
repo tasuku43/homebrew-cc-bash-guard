@@ -1,0 +1,30 @@
+name: Formula CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-formula:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skip until first formula lands
+        if: ${{ hashFiles('Formula/cmdproxy.rb') == '' }}
+        run: echo "Formula/cmdproxy.rb not present yet; skipping validation"
+
+      - name: Validate Ruby syntax
+        if: ${{ hashFiles('Formula/cmdproxy.rb') != '' }}
+        run: ruby -c Formula/cmdproxy.rb
+
+      - name: Check formula metadata
+        if: ${{ hashFiles('Formula/cmdproxy.rb') != '' }}
+        run: |
+          grep -q 'class Cmdproxy < Formula' Formula/cmdproxy.rb
+          grep -q 'https://github.com/tasuku43/cmdproxy/releases/download/' Formula/cmdproxy.rb
+          grep -q 'bin.install "cmdproxy"' Formula/cmdproxy.rb
