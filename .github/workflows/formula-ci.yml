@@ -15,16 +15,16 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Skip until first formula lands
-        if: ${{ hashFiles('Formula/cmdproxy.rb') == '' }}
-        run: echo "Formula/cmdproxy.rb not present yet; skipping validation"
+        if: ${{ hashFiles('Formula/cc-bash-proxy.rb') == '' }}
+        run: echo "Formula/cc-bash-proxy.rb not present yet; skipping validation"
 
       - name: Validate Ruby syntax
-        if: ${{ hashFiles('Formula/cmdproxy.rb') != '' }}
-        run: ruby -c Formula/cmdproxy.rb
+        if: ${{ hashFiles('Formula/cc-bash-proxy.rb') != '' }}
+        run: ruby -c Formula/cc-bash-proxy.rb
 
       - name: Check formula metadata
-        if: ${{ hashFiles('Formula/cmdproxy.rb') != '' }}
+        if: ${{ hashFiles('Formula/cc-bash-proxy.rb') != '' }}
         run: |
-          grep -q 'class Cmdproxy < Formula' Formula/cmdproxy.rb
-          grep -q 'https://github.com/tasuku43/cmdproxy/releases/download/' Formula/cmdproxy.rb
-          grep -q 'bin.install "cmdproxy"' Formula/cmdproxy.rb
+          grep -q 'class CcBashProxy < Formula' Formula/cc-bash-proxy.rb
+          grep -q 'https://github.com/tasuku43/cc-bash-proxy/releases/download/' Formula/cc-bash-proxy.rb
+          grep -q 'bin.install "cc-bash-proxy"' Formula/cc-bash-proxy.rb
