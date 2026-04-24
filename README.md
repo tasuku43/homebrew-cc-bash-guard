@@ -2,6 +2,12 @@
 
 Homebrew tap for `cc-bash-proxy` stable releases.
 
+## Install
+
+```sh
+brew install tasuku43/cc-bash-proxy/cc-bash-proxy
+```
+
 ## Role in the release pipeline
 
 This repository is part of the `cc-bash-proxy` delivery path, but it is not the
