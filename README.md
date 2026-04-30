@@ -23,3 +23,10 @@ Users should treat:
 
 Stable `cc-bash-guard` tags open an automated PR against this repository.
 Only those bot-authored release PRs should be auto-merged.
+
+The auto-merge workflow uses a GitHub App token from repository secrets:
+
+- `HOMEBREW_APP_ID`
+- `HOMEBREW_APP_KEY`
+
+The app must be allowed to merge release PRs with branch protection bypass.
